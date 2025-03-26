@@ -1,0 +1,16 @@
+/* Estilo para el botón */
+.button {
+-fx-padding: 8px 16px;
+-fx-background-radius: 4px;
+}
+
+/* Efecto hover para el botón */
+.button:hover {
+-fx-opacity: 0.9;
+}
+
+/* Estilo para los campos de texto */
+.text-field, .password-field {
+-fx-pref-width: 200px;
+-fx-padding: 5px;
+}
