@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lobo24.controllers.MainController">
+
+    <center>
+        <TableView fx:id="productosTable">
+            <columns>
+                <TableColumn text="ID" fx:id="colId"/>
+                <TableColumn text="Nombre" fx:id="colNombre"/>
+                <TableColumn text="Stock" fx:id="colStock"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <Button text="Agregar Producto" fx:id="btnAgregar" onAction="#agregarProducto"/>
+    </bottom>
+</BorderPane>
