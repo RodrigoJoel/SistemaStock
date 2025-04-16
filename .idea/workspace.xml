@@ -4,48 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="849d05bd-d01e-45e8-a079-a8a0c73d4ac6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/ProductosMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/TestConexion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/PasswordUpdater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/RecoveryCodeGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/RecoveryCodeVerifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/TestPasswordRecovery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/TestRecoveryCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/DetalleVentaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevaVentaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevoProductoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ProductosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/RecuperarPasswordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/VentasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/dao/ProductoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/database/DatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/database/TestDatabaseConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Producto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Venta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/VentaHistorico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/EmailSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/ProductoVenta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/login-styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/stylesProductos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MainView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ProductosView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/RecuperarPassword.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/detalleVenta.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/nuevaVenta.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/nuevoProducto.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ventas.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="849d05bd-d01e-45e8-a079-a8a0c73d4ac6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
