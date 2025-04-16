@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="849d05bd-d01e-45e8-a079-a8a0c73d4ac6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/ProductosMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/TestConexion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/PasswordUpdater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/RecoveryCodeGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/RecoveryCodeVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/TestPasswordRecovery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/TestRecoveryCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/DetalleVentaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevaVentaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevoProductoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ProductosController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/RecuperarPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/VentasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/dao/ProductoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/database/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/database/TestDatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Producto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Venta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/VentaHistorico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/EmailSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/ProductoVenta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/login-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/stylesProductos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MainView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ProductosView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/RecuperarPassword.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/detalleVenta.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/nuevaVenta.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/nuevoProducto.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ventas.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2upNO4fU7EsRDYyRmoen4pgcjGm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/rodri/OneDrive/Desktop/JavaAlura24/stock-system/src/main/java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\views" />
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24\views\views" />
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24" />
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\styles" />
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24\styles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.StockSystemApp">
+    <configuration name="StockSystemApp" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.Main" />
+      <module name="stock-system" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\rodri\OneDrive\Desktop\javafx-sdk-18.0.2\javafx-sdk-18.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml  " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.util.Test" />
+      <module name="stock-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lobo24.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="TestPasswordRecovery" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.auth.TestPasswordRecovery" />
+      <module name="stock-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lobo24.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="TestRecoveryCode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.auth.TestRecoveryCode" />
+      <module name="stock-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lobo24.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="com.lobo24.TestConexion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.TestConexion" />
+      <module name="stock-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lobo24.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="com.lobo24.database.TestDatabaseConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.lobo24.database.TestDatabaseConnection" />
+      <module name="stock-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lobo24.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.StockSystemApp" />
+      <item itemvalue="Application.com.lobo24.database.TestDatabaseConnection" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.TestPasswordRecovery" />
+      <item itemvalue="Application.TestRecoveryCode" />
+      <item itemvalue="Application.com.lobo24.TestConexion" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.com.lobo24.database.TestDatabaseConnection" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.TestRecoveryCode" />
+        <item itemvalue="Application.TestPasswordRecovery" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="849d05bd-d01e-45e8-a079-a8a0c73d4ac6" name="Changes" comment="" />
+      <created>1742941524402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742941524402</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.NuevoProductoController" spacing="10" style="-fx-padding: 20;">
+
+    <!-- Encabezado -->
+    <Label text="Datos del Producto" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    <HBox spacing="10">
+        <Button text="Datos del producto" style="-fx-font-weight: bold; -fx-background-color: #e0e0e0;"/>
+        <Button text="Combo"/>
+        <Button text="Tasa"/>
+        <Button text="Proveedores"/>
+        <Button text="Opciones"/>
+        <Button text="Validad"/>
+    </HBox>
+
+
+    <GridPane hgap="10" vgap="10">
+        <!-- Fila 1: Código -->
+        <Label text="Código:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <HBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <TextField style="-fx-pref-width: 150;"/>
+            <CheckBox text="Automático"/>
+        </HBox>
+
+        <!-- Fila 2: Código Extra -->
+        <Label text="Código Extra:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Fila 3: EAN/GTIN -->
+        <Label text="EAN / GTIN:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Campos principales -->
+    <VBox spacing="10">
+        <TextField promptText="Descripción/Nombre"/>
+        <ComboBox promptText="Categoría"/>
+        <TextField promptText="Marca"/>
+
+        <!-- Precio de venta con checks -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField promptText="Precio de venta" style="-fx-pref-width: 150;"/>
+            <CheckBox text="Automático"/>
+            <CheckBox text="Cambiar precio en venta"/>
+        </HBox>
+
+        <TextField promptText="Precio de coste"/>
+        <TextField promptText="de incremento %"/>
+        <CheckBox text="Consulta de stock"/>
+        <TextField promptText="Stock actual"/>
+        <TextField promptText="Stock mínimo (alerta)"/>
+    </VBox>
+
+    <!-- Sección Inferior -->
+    <VBox spacing="5" style="-fx-padding: 10 0 0 0;">
+        <CheckBox text="Cambiar precio en el momento de la venta"/>
+        <CheckBox text="Añadir observación - F4"/>
+    </VBox>
+
+    <!-- Botones -->
+    <HBox spacing="10" style="-fx-padding: 20 0 0 0; -fx-alignment: CENTER;">
+        <Button text="GUARDAR - F2" onAction="#guardarProducto" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="CANCELAR" onAction="#cerrarVentana" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

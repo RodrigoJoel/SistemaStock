@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lobo24.controllers.ProductosController" stylesheets="@styles.css">
+
+    <top>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 10;" alignment="CENTER_LEFT">
+            <!-- Título y botón "+" juntos -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Productos (--)" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+                <Button text="+"
+                        style="-fx-font-size: 18; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-background-color: #3498db; -fx-background-radius: 20;
+                               -fx-min-width: 40; -fx-min-height: 40; -fx-cursor: hand;"
+                        onAction="#abrirNuevoProducto"/>
+            </HBox>
+            <HBox spacing="10" style="-fx-padding: 0 20;">
+                <TextField fx:id="buscarField" promptText="Buscar producto por nombre o código"
+                           style="-fx-prompt-text-fill: #bdc3c7; -fx-font-size: 14; -fx-pref-width: 300;">
+                    <padding>
+                        <Insets top="5" right="5" bottom="5" left="5"/>
+                    </padding>
+                </TextField>
+            </HBox>
+
+            <HBox spacing="10" style="-fx-padding: 0 0 0 20;">
+                <Button text="Proveedores" styleClass="menu-button"/>
+                <Button text="Registro de Tasas" styleClass="menu-button"/>
+                <Button text="Reajuste de precios" styleClass="menu-button"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <Label text="Artículo: Aquí el encabezado de una columna para agrupar por esta columna"
+                   style="-fx-text-fill: #7f8c8d; -fx-font-style: italic; -fx-padding: 5;"/>
+
+            <!-- Tabla con las columnas ajustadas según la imagen -->
+            <TableView fx:id="tablaProductos" style="-fx-font-size: 14;">
+                <columns>
+                    <TableColumn text="Operación" prefWidth="120">
+                        <cellValueFactory><PropertyValueFactory property="operacion"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Descripción" prefWidth="300">
+                        <cellValueFactory><PropertyValueFactory property="descripcion"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Código" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="codigo"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Precio" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="precio"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Stock Actual" prefWidth="80">
+                        <cellValueFactory><PropertyValueFactory property="stockActual"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Stock Reservado" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="stockReservado"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Stock Disponible" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="stockDisponible"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Código" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="codigoAlterno"/></cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+            <Label fx:id="contadorLabel" text="Total de productos: 0" style="-fx-font-weight: bold;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

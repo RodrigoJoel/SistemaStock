@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lobo24.controllers.NuevaVentaController">
+
+    <!-- Centro: lista de productos agregados -->
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <HBox spacing="10">
+                <TextField fx:id="campoBusqueda" promptText="Buscar producto por código, nombre o escanear..." HBox.hgrow="ALWAYS"/>
+                <Button text="Agregar" onAction="#agregarProducto"/>
+            </HBox>
+
+            <TableView fx:id="tablaProductos" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCodigo" text="Código" />
+                    <TableColumn fx:id="colNombre" text="Producto" />
+                    <TableColumn fx:id="colCantidad" text="Cantidad" />
+                    <TableColumn fx:id="colPrecio" text="Precio" />
+                    <TableColumn fx:id="colSubtotal" text="Subtotal" />
+                    <TableColumn fx:id="colEliminar" text="Eliminar" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Derecha: medios de pago -->
+    <right>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Método de pago" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+
+            <!-- RadioButtons con el MISMO toggleGroup (sin declarar el grupo en FXML) -->
+            <RadioButton text="Efectivo" fx:id="pagoEfectivo"/>
+            <RadioButton text="PedidosYa Efectivo" fx:id="pagoPedidosYaEfectivo"/>
+            <RadioButton text="Tarjeta" fx:id="pagoTarjeta"/>
+            <RadioButton text="Mercado Pago" fx:id="pagoMP"/>
+            <RadioButton text="Transferencia" fx:id="pagoTransferencia"/>
+
+            <Label text="Detalles del pago:"/>
+            <TextArea fx:id="campoDetalles" prefRowCount="5" wrapText="true"/>
+
+            <Button text="Cancelar venta" onAction="#cancelarVenta" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+        </VBox>
+    </right>
+
+    <!-- Inferior: total acumulado y botón finalizar -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER_RIGHT" style="-fx-background-color: #f4f4f4;">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Total:" style="-fx-font-weight: bold; -fx-font-size: 20px;" />
+            <Label fx:id="labelTotal" text="0.00" style="-fx-font-size: 16px;"/>
+            <Button text="Finalizar venta" onAction="#finalizarVenta"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 20px;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.lobo24.controllers.VentasController" orientation="HORIZONTAL">
+
+    <!-- Contenido principal -->
+    <VBox spacing="10" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
+
+        <!-- Título -->
+        <!-- Título y usuario -->
+        <VBox spacing="5">
+            <Label text="Ventas" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+            <Label fx:id="lblUsuario" style="-fx-text-fill: #2c3e50;" />
+        </VBox>
+
+
+
+        <!-- Botones -->
+        <HBox spacing="10">
+            <Button text="Nueva Venta - F3" onAction="#abrirVentanaNuevaVenta"
+                    style="-fx-background-color: #2980b9; -fx-text-fill: white;" />
+
+            <Button text="Nuevo Pedido - F4" />
+            <Button text="Nueva Cotización - F5" />
+            <Button text="Devolución" />
+        </HBox>
+
+        <!-- Tabs de secciones -->
+        <HBox spacing="15" style="-fx-padding: 10 0 0 0;">
+            <Hyperlink text="Histórico" />
+            <Hyperlink text="Pedido Abierto" />
+            <Hyperlink text="Pedido para Aceptar" />
+            <Hyperlink text="Cotización" />
+        </HBox>
+
+        <!-- Filtro de visualización -->
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label text="Visualización:" />
+            <RadioButton text="Resumen" />
+            <RadioButton text="por Producto" />
+            <ComboBox promptText="Ventas de caja actual" />
+        </HBox>
+
+        <!-- Tabla de ventas -->
+        <TableView fx:id="tablaVentas" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colOperacion" text="Operación" />
+                <TableColumn fx:id="colNumero" text="Número" />
+                <TableColumn fx:id="colResumen" text="Resumen" />
+                <TableColumn fx:id="colTipo" text="Tipo" />
+                <TableColumn fx:id="colFecha" text="Fecha" />
+                <TableColumn fx:id="colHora" text="Hora" />
+                <TableColumn fx:id="colOrigen" text="Origen" />
+                <TableColumn fx:id="colArticulos" text="Artículos" />
+                <TableColumn fx:id="colCliente" text="Cliente" />
+                <TableColumn fx:id="colObservaciones" text="Observaciones" />
+            </columns>
+        </TableView>
+
+        <!-- Pie de página -->
+        <Label text="© Lobo24 2025" style="-fx-text-fill: gray; -fx-padding: 10 0 0 0;" />
+    </VBox>
+</SplitPane>
+
+

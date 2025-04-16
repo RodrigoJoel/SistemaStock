@@ -1,0 +1,26 @@
+/* Estilo para el VBox principal (fondo y sombra) */
+.vbox {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 5, 0, 0);
+}
+
+/* Estilo para las etiquetas (labels) */
+.label {
+    -fx-font-size: 30px;
+    -fx-text-fill: #333333;
+}
+
+/* Estilo para el título */
+.text {
+    -fx-font-size: 100px !important;
+    -fx-fill: #2c3e50 !important;
+}
+
+/* Estilo para el mensaje de conexión */
+#lblEstado {
+    -fx-font-style: italic;
+    -fx-fill: #7f8c8d;
+}

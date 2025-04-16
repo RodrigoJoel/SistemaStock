@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/18"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.DetalleVentaController"
+      spacing="10"
+      style="-fx-padding: 20;">
+
+    <TableView fx:id="tablaProductos">
+        <columns>
+            <TableColumn text="Producto" fx:id="colNombre" prefWidth="150"/>
+            <TableColumn text="Cantidad" fx:id="colCantidad" prefWidth="80"/>
+            <TableColumn text="Precio Unit." fx:id="colPrecio" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="labelTotal" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+    <Button text="Cerrar" onAction="#cerrarVentana"
+            style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
+</VBox>

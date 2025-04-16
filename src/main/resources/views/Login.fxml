@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.LoginController"
+      spacing="25" alignment="CENTER"
+      style="-fx-padding: 40px; -fx-background-color: #f8f9fa; -fx-min-width: 450px;">
+
+    <!-- Título principal con sombra y tamaño aumentado -->
+    <Label text="Sistema de Ventas Lobo24"
+           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #8b0000;
+                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);"/>
+
+    <!-- IP con estilo más destacado -->
+    <Label fx:id="lblIP"
+           style="-fx-font-size: 14px; -fx-text-fill: #5a6268; -fx-font-style: italic;"/>
+
+    <!-- Formulario ampliado -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="120"/>
+            <ColumnConstraints prefWidth="250"/>
+        </columnConstraints>
+
+        <Label text="Usuario:"
+               style="-fx-font-size: 16px; -fx-text-fill: #495057;"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+        <TextField fx:id="txtUsuario"
+                   style="-fx-font-size: 15px; -fx-pref-height: 35px; -fx-pref-width: 250px;"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Contraseña:"
+               style="-fx-font-size: 16px; -fx-text-fill: #495057;"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+        <PasswordField fx:id="txtPassword"
+                       style="-fx-font-size: 15px; -fx-pref-height: 35px; -fx-pref-width: 250px;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Botón más grande con efecto hover -->
+    <Button fx:id="btnIngresar" text="Ingresar" onAction="#handleLogin"
+            style="-fx-background-color: #8b0000; -fx-text-fill: white;
+               -fx-font-size: 16px; -fx-font-weight: bold;
+               -fx-pref-width: 180px; -fx-pref-height: 45px;
+               -fx-background-radius: 5px; -fx-border-radius: 5px;"/>
+
+    <!-- Enlace de recuperación de contraseña -->
+    <!-- Opción de recuperación de contraseña -->
+    <Hyperlink text="¿Olvidaste tu contraseña?" fx:id="linkRecuperar"
+               onAction="#handleRecuperarPassword"
+               style="-fx-font-size: 14px; -fx-text-fill: #007bff;"/>
+
+
+    <!-- Mensaje de error con más margen -->
+    <Label fx:id="lblError"
+           style="-fx-text-fill: #dc3545; -fx-font-size: 14px; -fx-padding: 10px 0 0 0;"/>
+</VBox>
