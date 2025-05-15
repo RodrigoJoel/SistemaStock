@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import com.lobo24.model.VentaHistorico;
+import com.lobo24.models.VentaHistorico;
 
 import java.io.IOException;
 

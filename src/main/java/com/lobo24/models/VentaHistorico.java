@@ -1,4 +1,4 @@
-package com.lobo24.model;
+package com.lobo24.models;
 
 public class VentaHistorico {
     private String operacion;

@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+<AnchorPane prefHeight="750.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lobo24.controllers.CajaController">
+    <children>
+        <!-- Tab Panel para las diferentes vistas de caja -->
+        <TabPane layoutX="14.0" layoutY="60.0" prefHeight="700.0" prefWidth="1700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <tabs>
+                <Tab text="Caja Actual">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1056.0">
+                            <children>
+                                <!-- Diseño de tres columnas -->
+                                <HBox layoutX="5.0" layoutY="10.0" prefHeight="600.0" prefWidth="1045.0" spacing="10.0">
+                                    <children>
+                                        <!-- COLUMNA 1: Resumen de Caja -->
+                                        <VBox prefHeight="600.0" prefWidth="495.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <!-- Cabecera -->
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="303.0">
+                                                    <children>
+                                                        <Label text="Resumen de Caja" style="-fx-font-weight: bold;">
+                                                            <HBox.margin>
+                                                                <Insets left="5.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="btnMaximizarResumen" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+                                                            </graphic>
+                                                        </Button>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Contenido del Resumen de Caja -->
+                                                <VBox prefHeight="550.0" prefWidth="320.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0" style="-fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                                                            <children>
+                                                                <Label text="Resumen de Caja #0" style="-fx-font-weight: bold;" fx:id="lblNumeroCaja">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <Label text="Abierto Hoy (00:00)" style="-fx-text-fill: #666666;" fx:id="lblHoraApertura">
+                                                            <VBox.margin>
+                                                                <Insets left="15.0" top="15.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+
+                                                        <VBox prefHeight="200.0" prefWidth="303.0" spacing="20.0">
+                                                            <children>
+                                                                <Label text="Saldo Inicial: $ 0,00" fx:id="lblSaldoInicial" />
+                                                                <Label text="Total de ventas: $ 0,00" fx:id="lblTotalVentas" />
+                                                                <Label text="Saldo Final: $ 0,00" style="-fx-font-weight: bold;" fx:id="lblSaldoFinal" />
+                                                                <Label text="Ganancias/Pérdidas: $ 0,00" style="-fx-text-fill: #4caf50;" fx:id="lblGanancias" />
+                                                            </children>
+                                                            <VBox.margin>
+                                                                <Insets left="15.0" top="30.0" />
+                                                            </VBox.margin>
+                                                        </VBox>
+
+                                                        <Pane VBox.vgrow="ALWAYS" />
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0" spacing="15.0">
+                                                            <children>
+                                                                <Button fx:id="btnAgregarDinero" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #f0f0f0; -fx-background-radius: 5;" text="Agregar Dinero" />
+                                                                <Button fx:id="btnRetirarDinero" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #f0f0f0; -fx-background-radius: 5;" text="Retirar Dinero" />
+                                                            </children>
+                                                            <VBox.margin>
+                                                                <Insets bottom="20.0" left="15.0" top="20.0" right="15.0" />
+                                                            </VBox.margin>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- COLUMNA 2: Medios de Pago -->
+                                        <VBox prefHeight="600.0" prefWidth="495.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <!-- Cabecera -->
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="303.0">
+                                                    <children>
+                                                        <Label text="Medio de Pago" style="-fx-font-weight: bold;">
+                                                            <HBox.margin>
+                                                                <Insets left="5.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="btnMaximizarMedioPago" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" />
+                                                            </graphic>
+                                                        </Button>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Contenido de Medios de Pago -->
+                                                <VBox prefHeight="550.0" prefWidth="320.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <!-- Lista de medios de pago -->
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="Dinero">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalDinero">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                            <VBox.margin>
+                                                                <Insets top="10.0" />
+                                                            </VBox.margin>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="Tarjeta de crédito">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalCredito">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="Tarjeta de débito">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalDebito">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="PEDIDOS YA DÉBITO">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalPedidosDebito">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="PEDIDOS YA EFECTIVO">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalPedidosEfectivo">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="MERCADOPAGO">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalMercadoPago">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="303.0">
+                                                            <children>
+                                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </ImageView>
+                                                                <Label text="CUENTA CORRIENTE">
+                                                                    <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                                <Pane HBox.hgrow="ALWAYS" />
+                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblTotalCuentaCorriente">
+                                                                    <HBox.margin>
+                                                                        <Insets right="15.0" />
+                                                                    </HBox.margin>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+
+                                                        <Pane VBox.vgrow="ALWAYS" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- COLUMNA 3: Transacciones -->
+                                        <VBox prefHeight="600.0" prefWidth="495.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <!-- Cabecera -->
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="303.0">
+                                                    <children>
+                                                        <Label text="Transacciones" style="-fx-font-weight: bold;">
+                                                            <HBox.margin>
+                                                                <Insets left="5.0" />
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                        <Button fx:id="btnMasInformacion" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #2196f3;" text="Más información" />
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Contenido de Transacciones -->
+                                                <VBox prefHeight="550.0" prefWidth="320.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <!-- Lista de transacciones -->
+                                                        <VBox prefHeight="480.0" prefWidth="303.0" VBox.vgrow="ALWAYS">
+                                                            <children>
+                                                                <!-- Transacción 1 -->
+                                                                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="303.0" style="-fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                                                                    <children>
+                                                                        <VBox prefHeight="60.0" prefWidth="180.0">
+                                                                            <children>
+                                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblMonto1">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                                <Label text="Apertura de Caja" style="-fx-text-fill: #666666;" fx:id="lblTipo1">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                                <Label text="Dinero" style="-fx-text-fill: #4caf50;" fx:id="lblMetodo1">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                            </children>
+                                                                            <HBox.margin>
+                                                                                <Insets left="15.0" />
+                                                                            </HBox.margin>
+                                                                        </VBox>
+                                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                                        <Label text="00:00" style="-fx-text-fill: #666666;" fx:id="lblHora1">
+                                                                            <HBox.margin>
+                                                                                <Insets right="15.0" />
+                                                                            </HBox.margin>
+                                                                        </Label>
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <!-- Transacción 2 -->
+                                                                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="303.0" style="-fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+                                                                    <children>
+                                                                        <VBox prefHeight="60.0" prefWidth="180.0">
+                                                                            <children>
+                                                                                <Label text="" style="-fx-font-weight: bold;" fx:id="lblMonto2">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                                <Label text="Venta" style="-fx-text-fill: #666666;" fx:id="lblTipo2">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                                <Label text="Dinero" style="-fx-text-fill: #4caf50;" fx:id="lblMetodo2">
+                                                                                    <VBox.margin>
+                                                                                        <Insets />
+                                                                                    </VBox.margin>
+                                                                                </Label>
+                                                                            </children>
+                                                                            <HBox.margin>
+                                                                                <Insets left="15.0" />
+                                                                            </HBox.margin>
+                                                                        </VBox>
+                                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                                        <Label text="00:00" style="-fx-text-fill: #666666;" fx:id="lblHora2">
+                                                                            <HBox.margin>
+                                                                                <Insets right="15.0" />
+                                                                            </HBox.margin>
+                                                                        </Label>
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <!-- Espacio para más transacciones -->
+                                                                <Pane prefHeight="200.0" prefWidth="303.0" VBox.vgrow="ALWAYS" />
+
+                                                                <!-- Saldo Final -->
+                                                                <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="303.0">
+                                                                    <children>
+                                                                        <Label text="Saldo Final" style="-fx-font-weight: bold;">
+                                                                            <HBox.margin>
+                                                                                <Insets left="15.0" />
+                                                                            </HBox.margin>
+                                                                        </Label>
+                                                                        <Pane HBox.hgrow="ALWAYS" />
+                                                                        <Label text="" style="-fx-font-weight: bold; -fx-font-size: 18px;" fx:id="lblSaldoFinalDerecha">
+                                                                            <HBox.margin>
+                                                                                <Insets right="15.0" />
+                                                                            </HBox.margin>
+                                                                        </Label>
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <!-- Botón cerrar caja -->
+                                                                <Button fx:id="btnCerrarCaja" mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="CERRAR CAJA">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
+                                                                    </VBox.margin>
+                                                                </Button>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <!-- Nueva pestaña Cajas Anteriores -->
+                <Tab text="Cajas Anteriores">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1700.0">
+                            <children>
+                                <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                                    <children>
+                                        <!-- Barra de búsqueda y filtros -->
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <children>
+                                                <Label text="Buscar por número de caja:"/>
+                                                <TextField fx:id="txtBuscarCaja" prefWidth="200"/>
+                                                <Button text="Buscar" fx:id="btnBuscar"/>
+                                                <Button text="Notificar Pericote" fx:id="btnNotificar" style="-fx-background-color: #f0f0f0;"/>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Tabla de cajas anteriores -->
+                                        <TableView fx:id="tablaCajasAnteriores" prefHeight="600">
+                                            <columns>
+                                                <TableColumn text="Productos" prefWidth="120" fx:id="colProductos"/>
+                                                <TableColumn text="Operación" prefWidth="100" fx:id="colOperacion"/>
+                                                <TableColumn text="Número" prefWidth="80" fx:id="colNumero"/>
+                                                <TableColumn text="Apertura" prefWidth="150" fx:id="colApertura"/>
+                                                <TableColumn text="Cierre" prefWidth="150" fx:id="colCierre"/>
+                                                <TableColumn text="Saldo Inicial" prefWidth="100" fx:id="colSaldoInicial">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="saldoInicial"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn text="Total Ventas" prefWidth="100" fx:id="colTotalVentas">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="totalVentas"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn text="Saldo Final" prefWidth="100" fx:id="colSaldoFinal">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="saldoFinal"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn text="Usuario Apertura" prefWidth="120" fx:id="colUsuarioApertura"/>
+                                                <TableColumn text="Usuario Cierre" prefWidth="120" fx:id="colUsuarioCierre"/>
+                                            </columns>
+                                        </TableView>
+
+                                        <!-- Paginación -->
+                                        <HBox alignment="CENTER" spacing="10">
+                                            <children>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Pestaña Verificar Medio de Pago -->
+                <Tab text="Verificar Medio de Pago">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1700.0">
+                            <children>
+                                <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                                    <children>
+                                        <!-- Filtros -->
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <children>
+                                                <Label text="Periodo:"/>
+                                                <ComboBox fx:id="cbPeriodo" prefWidth="150">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Todos los periodos"/>
+                                                            <String fx:value="Hoy"/>
+                                                            <String fx:value="Esta semana"/>
+                                                            <String fx:value="Este mes"/>
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+
+                                                <Label text="Pagos:"/>
+                                                <ComboBox fx:id="cbPagos" prefWidth="150">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Todos los Pagos"/>
+                                                            <String fx:value="Dinero"/>
+                                                            <String fx:value="Tarjeta"/>
+                                                            <String fx:value="MercadoPago"/>
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+
+                                                <Button text="Imprimir" fx:id="btnImprimir" style="-fx-background-color: #f0f0f0;"/>
+                                                <Button text="Exportar" fx:id="btnExportar" style="-fx-background-color: #f0f0f0;"/>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Tabla de transacciones -->
+                                        <TableView fx:id="tablaTransacciones" prefHeight="550">
+                                            <columns>
+                                                <TableColumn text="Productos" prefWidth="120" fx:id="colProductosV"/>
+                                                <TableColumn text="Operación" prefWidth="100" fx:id="colOperacionV"/>
+                                                <TableColumn text="Fecha" prefWidth="100" fx:id="colFecha"/>
+                                                <TableColumn text="Hora" prefWidth="80" fx:id="colHora"/>
+                                                <TableColumn text="Medio de pago" prefWidth="120" fx:id="colMedioPago"/>
+                                                <TableColumn text="Valor" prefWidth="100" fx:id="colValor"/>
+                                                <TableColumn text="Tipo transacción" prefWidth="150" fx:id="colTipoTransaccion"/>
+                                                <TableColumn text="N° Transacción" prefWidth="100" fx:id="colNumTransaccion"/>
+                                                <TableColumn text="Caja" prefWidth="80" fx:id="colCajaV"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Recuento de Dinero">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="960.0">
+                            <children>
+                                <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                                    <children>
+                                        <!-- Botones superiores -->
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <children>
+                                                <Button text="CERRAR CAJA" fx:id="btnCerrarCajaRecuento"
+                                                        style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                                <Button text="Reiniciar Contador" fx:id="btnReiniciarContador"
+                                                        style="-fx-background-color: #f0f0f0;"/>
+                                                <Button text="Personalizar" fx:id="btnPersonalizar"
+                                                        style="-fx-background-color: #f0f0f0;"/>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Tabla de recuento -->
+                                        <TableView fx:id="tablaRecuento" prefHeight="500">
+                                            <columns>
+                                                <TableColumn text="Billete/Moneda" prefWidth="200" fx:id="colDenominacion">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="denominacion"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn text="Cantidad" prefWidth="150" fx:id="colCantidad">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="cantidad"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn text="Total" prefWidth="150" fx:id="colTotalDenominacion">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="total"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                            </columns>
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <!-- Ejemplo de datos - se cargarán desde el controlador -->
+
+                                                </FXCollections>
+                                            </items>
+                                        </TableView>
+
+                                        <!-- Total general -->
+                                        <HBox alignment="CENTER_RIGHT" spacing="20" style="-fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+                                            <children>
+                                                <Label text="TOTAL GENERAL:" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                                                <Label text="" fx:id="lblTotalGeneralRecuento"
+                                                       style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2196F3;"/>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

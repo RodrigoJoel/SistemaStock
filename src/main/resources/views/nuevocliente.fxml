@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.NuevoClienteController" spacing="10" style="-fx-padding: 15;">
+
+    <Label fx:id="tituloLabel" text="Nuevo Cliente" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30"/>
+            <ColumnConstraints percentWidth="70"/>
+        </columnConstraints>
+
+        <!-- Fila 0 -->
+        <Label text="Nombre*:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <HBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <TextField fx:id="nombreField" prefWidth="200"/>
+            <TextField fx:id="apellidoField" prefWidth="200" promptText="Apellido"/>
+        </HBox>
+
+        <!-- Fila 1 -->
+        <Label text="Código*:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <HBox spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <TextField fx:id="codigoField" prefWidth="150"/>
+            <CheckBox fx:id="codigoAutoCheck" text="Auto" onAction="#generarCodigoAutomatico"/>
+        </HBox>
+
+        <!-- Fila 2 -->
+        <Label text="DNI/CUIT:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="dniField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Fila 3 -->
+        <Label text="Teléfono:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="telefonoField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Fila 4 -->
+        <Label text="Email:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <!-- Fila 5 -->
+
+        <Label text="Tipo Cliente:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="tipoClientComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Regular"/>  <!-- Usar fx:value en lugar de value -->
+                    <String fx:value="Premium"/>
+                    <String fx:value="Empresa"/>
+                    <String fx:value="Mayorista"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Label text="Ultiima compra:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+        <TextField fx:id="ultimaField" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+
+        <!-- Fila 6 -->
+        <Label text="Dirección:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="direccionField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <!-- Fila 7 -->
+        <Label text="Localidad/Provincia:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <HBox spacing="5" GridPane.rowIndex="7" GridPane.columnIndex="1">
+            <TextField fx:id="localidadField" prefWidth="150" promptText="Localidad"/>
+            <TextField fx:id="provinciaField" prefWidth="150" promptText="Provincia"/>
+        </HBox>
+
+        <!-- Fila 8 -->
+        <Label text="Saldo inicial:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <TextField fx:id="saldoField" GridPane.rowIndex="8" GridPane.columnIndex="1" promptText="0.00"/>
+
+        <!-- Fila 9 -->
+        <Label text="Fecha Nacimiento:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="fechaNacimientoPicker" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+        <!-- Fila 10 -->
+        <Label text="Notificaciones:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="notificacionesCheck" text="Recibe notificaciones" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Label text="Observaciones:"/>
+    <TextArea fx:id="observacionesArea" prefRowCount="3"/>
+
+    <HBox spacing="10" style="-fx-padding: 10 0 0 0;" alignment="CENTER_RIGHT">
+        <Button text="Cancelar" onAction="#cerrarVentana" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        <Button text="Guardar" onAction="#guardarCliente" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

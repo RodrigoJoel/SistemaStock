@@ -8,7 +8,7 @@ public class Database {
     // Configura con tus credenciales (¡usa el puerto correcto!)
     private static final String URL = "jdbc:mysql://localhost:3506/lobo"; // Puerto 3506 según tu Workbench
     private static final String USER = "root"; // Cambia si usas otro usuario
-    private static final String PASSWORD = ""; // Tu contraseña de MySQL
+    private static final String PASSWORD = "Ro3721"; // Tu contraseña de MySQL
 
     public static Connection getConnection() throws SQLException {
         try {

@@ -22,30 +22,31 @@
         <ScrollPane fitToWidth="true" style="-fx-background: #34495e;">
             <VBox fx:id="menuVertical" spacing="5" style="-fx-background-color: #34495e; -fx-padding: 10 0;">
                 <Button text="🛒 Ventas" onAction="#handleMenuAction" userData="Ventas"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="👥 Clientes" onAction="#handleMenuAction" userData="Clientes"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="📦 Productos" onAction="#handleMenuAction" userData="Productos"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="📊 Stock" onAction="#handleMenuAction" userData="Stock"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
-                <Button text="🛍️ Catálogo Online" onAction="#handleMenuAction" userData="Catálogo Online"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
+                <!--  <Button text="🛍️ Catálogo Online" onAction="#handleMenuAction" userData="Catálogo Online"
+                         styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>-->
                 <Button text="💸 Cuentas a Pagar" onAction="#handleMenuAction" userData="Cuentas a Pagar"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="💼 Caja" onAction="#handleMenuAction" userData="Caja"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="📈 Estadísticas" onAction="#handleMenuAction" userData="Estadísticas"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
                 <Button text="🎓 Tutoriales" onAction="#handleMenuAction" userData="Tutoriales"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
-                <Button text="📱 App" onAction="#handleMenuAction" userData="Tutoriales"
-                        styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
-            </VBox>
-        </ScrollPane>
-    </left>
+                        styleClass="menu-button" maxWidth="Infinity" minHeight="60"/>
+    <!--     <Button text="📱 App" onAction="#handleMenuAction" userData="Tutoriales"
+             styleClass="menu-button" maxWidth="Infinity" minHeight="40"/>
+             -->
+ </VBox>
+</ScrollPane>
+</left>
 
-    <!-- Center: Área de contenido principal -->
+<!-- Center: Área de contenido principal -->
     <center>
         <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1;">
             <Label text="Selecciona una opción del menú" style="-fx-font-size: 18px; -fx-text-fill: #7f8c8d;"/>

@@ -1,249 +1,146 @@
 package com.lobo24.models;
 
-import javafx.beans.property.*;
+import java.math.BigDecimal;
 
 public class Producto {
-    // Propiedades principales (ajustadas a BD)
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty codigoBarras = new SimpleStringProperty();
-    private final StringProperty codigoExtra = new SimpleStringProperty();
-    private final StringProperty descripcion = new SimpleStringProperty();
-    private final StringProperty categoria = new SimpleStringProperty();
-    private final StringProperty marca = new SimpleStringProperty();
-    private final DoubleProperty precioVenta = new SimpleDoubleProperty();
-    private final DoubleProperty precioCosto = new SimpleDoubleProperty();
-    private final DoubleProperty porcentajeIncremento = new SimpleDoubleProperty();
-    private final IntegerProperty stockActual = new SimpleIntegerProperty();
-    private final IntegerProperty stockMinimo = new SimpleIntegerProperty();
+    private int id;
+    private String codigoBarras;
+    private String codigoExtra;
+    private String descripcion;
+    private String categoria;
+    private String marca;
+    private BigDecimal precioCoste;
+    private BigDecimal precioVenta;
+    private int stock;
+    private int stockMinimo;
+    private BigDecimal incremento;
+    private boolean automatico;
+    private String ean;
+    private String codigo;
 
-    // Propiedades adicionales (opcionales)
-    private final BooleanProperty automatico = new SimpleBooleanProperty(false);
-    private final BooleanProperty controlStock = new SimpleBooleanProperty(true);
-    private final StringProperty unidadMedida = new SimpleStringProperty();
-    private final BooleanProperty permiteFraccionamiento = new SimpleBooleanProperty(false);
-    private final StringProperty imagenPath = new SimpleStringProperty();
-    private final StringProperty observaciones = new SimpleStringProperty();
-
-    // Constructores
+    // Constructor vacío necesario para cargar desde ResultSet
     public Producto() {
-        // Constructor vacío para FXMLLoader
+        this.precioCoste = BigDecimal.ZERO;
+        this.precioVenta = BigDecimal.ZERO;
+        this.incremento = BigDecimal.ZERO;
     }
 
-    public Producto(int id, String codigoBarras, String codigoExtra, String descripcion,
-                    String categoria, String marca, double precioVenta, double precioCosto,
-                    double porcentajeIncremento, int stockActual, int stockMinimo) {
-        this.id.set(id);
-        this.codigoBarras.set(codigoBarras);
-        this.codigoExtra.set(codigoExtra);
-        this.descripcion.set(descripcion);
-        this.categoria.set(categoria);
-        this.marca.set(marca);
-        this.precioVenta.set(precioVenta);
-        this.precioCosto.set(precioCosto);
-        this.porcentajeIncremento.set(porcentajeIncremento);
-        this.stockActual.set(stockActual);
-        this.stockMinimo.set(stockMinimo);
+    // Constructor con campos principales
+    public Producto(String codigoBarras, String descripcion, String categoria,
+                    double precioCoste, double precioVenta, double incremento) {
+        this();
+        this.codigoBarras = codigoBarras;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.setPrecioCoste(precioCoste);
+        this.setPrecioVenta(precioVenta);
+        this.setIncremento(incremento);
     }
 
-    // Getters y Setters para todas las propiedades
-    public int getId() { return id.get(); }
-    public void setId(int id) { this.id.set(id); }
-    public IntegerProperty idProperty() { return id; }
-
-    public String getCodigoBarras() { return codigoBarras.get(); }
-    public void setCodigoBarras(String codigoBarras) { this.codigoBarras.set(codigoBarras); }
-    public StringProperty codigoBarrasProperty() { return codigoBarras; }
-
-    // ... (implementa getters/setters para todas las propiedades restantes)
-
-    public String getCodigoExtra() {
-        return codigoExtra.get();
+    // Constructor alternativo con BigDecimal
+    public Producto(String codigoBarras, String descripcion, String categoria,
+                    BigDecimal precioCoste, BigDecimal precioVenta, BigDecimal incremento) {
+        this();
+        this.codigoBarras = codigoBarras;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.setPrecioCoste(precioCoste);
+        this.setPrecioVenta(precioVenta);
+        this.setIncremento(incremento);
     }
 
-    public StringProperty codigoExtraProperty() {
-        return codigoExtra;
+    public static int getStockDisponible() {
+        return 0;
     }
 
-    public void setCodigoExtra(String codigoExtra) {
-        this.codigoExtra.set(codigoExtra);
+    public void calcularPrecioVentaAutomatico() {
+        if (automatico && precioCoste != null && incremento != null) {
+            this.precioVenta = precioCoste.add(precioCoste.multiply(incremento.divide(BigDecimal.valueOf(100))));
+        }
     }
 
-    public String getDescripcion() {
-        return descripcion.get();
+
+    // Getters y Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getCodigo() { return codigo; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    public String getCodigoBarras() { return codigoBarras; }
+    public void setCodigoBarras(String codigoBarras) { this.codigoBarras = codigoBarras; }
+
+    public String getCodigoExtra() { return codigoExtra; }
+    public void setCodigoExtra(String codigoExtra) { this.codigoExtra = codigoExtra; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
+
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+
+    public BigDecimal getPrecioCoste() { return precioCoste; }
+    public void setPrecioCoste(BigDecimal precioCoste) {
+        this.precioCoste = precioCoste != null ? precioCoste : BigDecimal.ZERO;
+    }
+    public void setPrecioCoste(double precioCoste) {
+        this.precioCoste = BigDecimal.valueOf(precioCoste);
     }
 
-    public StringProperty descripcionProperty() {
-        return descripcion;
+    public BigDecimal getPrecioVenta() { return precioVenta; }
+    public void setPrecioVenta(BigDecimal precioVenta) {
+        this.precioVenta = precioVenta != null ? precioVenta : BigDecimal.ZERO;
     }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion.set(descripcion);
-    }
-
-    public String getCategoria() {
-        return categoria.get();
-    }
-
-    public StringProperty categoriaProperty() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria.set(categoria);
-    }
-
-    public String getMarca() {
-        return marca.get();
-    }
-
-    public StringProperty marcaProperty() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca.set(marca);
-    }
-
-    public double getPrecioVenta() {
-        return precioVenta.get();
-    }
-
-    public DoubleProperty precioVentaProperty() {
-        return precioVenta;
-    }
-
     public void setPrecioVenta(double precioVenta) {
-        this.precioVenta.set(precioVenta);
+        this.precioVenta = BigDecimal.valueOf(precioVenta);
     }
 
-    public double getPrecioCosto() {
-        return precioCosto.get();
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
+
+    public int getStockMinimo() { return stockMinimo; }
+    public void setStockMinimo(int stockMinimo) { this.stockMinimo = stockMinimo; }
+
+    public BigDecimal getIncremento() { return incremento; }
+    public void setIncremento(BigDecimal incremento) {
+        this.incremento = incremento != null ? incremento : BigDecimal.ZERO;
+    }
+    public void setIncremento(double incremento) {
+        this.incremento = BigDecimal.valueOf(incremento);
     }
 
-    public DoubleProperty precioCostoProperty() {
-        return precioCosto;
+    public boolean isAutomatico() { return automatico; }
+    public void setAutomatico(boolean automatico) { this.automatico = automatico; }
+
+    public String getEan() { return ean; }
+    public void setEan(String ean) { this.ean = ean; }
+
+    // Métodos adicionales
+    public String getNombre() {
+        return this.descripcion;
     }
 
-    public void setPrecioCosto(double precioCosto) {
-        this.precioCosto.set(precioCosto);
+    public String getCodigoBarrasAlternativo() {
+        return this.codigoExtra;
     }
 
-    public double getPorcentajeIncremento() {
-        return porcentajeIncremento.get();
+    public void setNombre(String nombre) {
+        this.descripcion = nombre;
     }
 
-    public DoubleProperty porcentajeIncrementoProperty() {
-        return porcentajeIncremento;
+    // Métodos de conveniencia para obtener valores como double
+    public double getPrecioCosteAsDouble() {
+        return precioCoste.doubleValue();
     }
 
-    public void setPorcentajeIncremento(double porcentajeIncremento) {
-        this.porcentajeIncremento.set(porcentajeIncremento);
+    public double getPrecioVentaAsDouble() {
+        return precioVenta.doubleValue();
     }
 
-    public int getStockActual() {
-        return stockActual.get();
-    }
-
-    public IntegerProperty stockActualProperty() {
-        return stockActual;
-    }
-
-    public void setStockActual(int stockActual) {
-        this.stockActual.set(stockActual);
-    }
-
-    public int getStockMinimo() {
-        return stockMinimo.get();
-    }
-
-    public IntegerProperty stockMinimoProperty() {
-        return stockMinimo;
-    }
-
-    public void setStockMinimo(int stockMinimo) {
-        this.stockMinimo.set(stockMinimo);
-    }
-
-    public boolean isAutomatico() {
-        return automatico.get();
-    }
-
-    public BooleanProperty automaticoProperty() {
-        return automatico;
-    }
-
-    public void setAutomatico(boolean automatico) {
-        this.automatico.set(automatico);
-    }
-
-    public boolean isControlStock() {
-        return controlStock.get();
-    }
-
-    public BooleanProperty controlStockProperty() {
-        return controlStock;
-    }
-
-    public void setControlStock(boolean controlStock) {
-        this.controlStock.set(controlStock);
-    }
-
-    public String getUnidadMedida() {
-        return unidadMedida.get();
-    }
-
-    public StringProperty unidadMedidaProperty() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(String unidadMedida) {
-        this.unidadMedida.set(unidadMedida);
-    }
-
-    public boolean isPermiteFraccionamiento() {
-        return permiteFraccionamiento.get();
-    }
-
-    public BooleanProperty permiteFraccionamientoProperty() {
-        return permiteFraccionamiento;
-    }
-
-    public void setPermiteFraccionamiento(boolean permiteFraccionamiento) {
-        this.permiteFraccionamiento.set(permiteFraccionamiento);
-    }
-
-    public String getImagenPath() {
-        return imagenPath.get();
-    }
-
-    public StringProperty imagenPathProperty() {
-        return imagenPath;
-    }
-
-    public void setImagenPath(String imagenPath) {
-        this.imagenPath.set(imagenPath);
-    }
-
-    public String getObservaciones() {
-        return observaciones.get();
-    }
-
-    public StringProperty observacionesProperty() {
-        return observaciones;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones.set(observaciones);
-    }
-
-    // Método toString para debugging
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "id=" + id.get() +
-                ", descripcion=" + descripcion.get() +
-                ", codigoBarras=" + codigoBarras.get() +
-                ", precioVenta=" + precioVenta.get() +
-                '}';
+    public double getIncrementoAsDouble() {
+        return incremento.doubleValue();
     }
 }

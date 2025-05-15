@@ -41,6 +41,22 @@
             <version>8.0.33</version>
         </dependency>
 
+        <!-- Dependencia para Apache POI -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version> <!-- Usa la última versión disponible -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.18.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,7 +68,6 @@
                 <configuration>
                     <mainClass>com.lobo24.Main</mainClass>
                     <options>
-                        <!-- Especifica la ruta al SDK de JavaFX sin usar la variable JAVA_HOME -->
                         <option>--module-path</option>
                         <option>C:/path/to/javafx-sdk-18.0.2/lib</option>
                         <option>--add-modules</option>

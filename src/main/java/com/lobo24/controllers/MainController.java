@@ -35,10 +35,10 @@ public class MainController {
         vistas.put("Ventas", "/views/ventas.fxml");
         vistas.put("Clientes", "/views/clientes.fxml");
         vistas.put("Productos", "/views/ProductosView.fxml");
-        vistas.put("Stock", "/views/stock.fxml");
+        vistas.put("Stock", "/views/Stock.fxml");
         vistas.put("Catálogo Online", "/views/catalogo.fxml");
-        vistas.put("Cuentas a Pagar", "/views/cuentasPagar.fxml");
-        vistas.put("Caja", "/views/caja.fxml");
+        vistas.put("Cuentas a Pagar", "/views/CuentasAPagar.fxml");
+        vistas.put("Caja", "/views/Caja.fxml");
         vistas.put("Estadísticas", "/views/estadisticas.fxml");
         vistas.put("Tutoriales", "/views/tutoriales.fxml");
     }

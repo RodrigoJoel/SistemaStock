@@ -220,7 +220,7 @@
 
 /* Estilo para los botones del menú superior */
 .menu-button {
-    -fx-background-color: #34495e;
+   /* -fx-background-color: #34495e;*/
     -fx-text-fill: white;
     -fx-padding: 5 10;
 }
@@ -228,3 +228,17 @@
 .menu-button:hover {
     -fx-background-color: #2980b9;
 }
+
+.options-button {
+    -fx-background-color: #e0e0e0;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-padding: 0;
+    -fx-background-radius: 15;
+}
+
+.options-button .label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #555;
+}
+

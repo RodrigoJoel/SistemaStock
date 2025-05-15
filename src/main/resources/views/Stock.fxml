@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane fx:id="stockMainPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lobo24.controllers.StockController" stylesheets="@styles.css">
+
+    <top>
+        <HBox style="-fx-padding: 10;" alignment="CENTER_LEFT">
+            <!-- Título y botón "+" juntos -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Stock (--)" style="-fx-text-fill: black; -fx-font-size: 20; -fx-font-weight: bold;"/>
+                <Button text="+"
+                        style="-fx-font-size: 18; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-background-color: #3498db; -fx-background-radius: 20;
+                               -fx-min-width: 40; -fx-min-height: 40; -fx-cursor: hand;"
+                        onAction="#handleAddStock"/>
+            </HBox>
+
+            <HBox spacing="10" style="-fx-padding: 0 20;">
+                <TextField fx:id="searchField" promptText="Buscar por nombre o código de producto"
+                           style="-fx-prompt-text-fill: #bdc3c7; -fx-font-size: 14; -fx-pref-width: 300;">
+                    <padding>
+                        <Insets top="5" right="5" bottom="5" left="5"/>
+                    </padding>
+                </TextField>
+                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearch"
+                        styleClass="menu-button">
+                    <graphic>
+                        <Label text="🔍" style="-fx-font-size: 14;"/>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <HBox spacing="10" style="-fx-padding: 0 0 0 20;">
+                <Button text="Stock Actual" styleClass="menu-button" onAction="#showStockTab"/>
+                <Button text="Operaciones" styleClass="menu-button" onAction="#showOperationsTab"/>
+                <Button text="Vencimientos" styleClass="menu-button" onAction="#showExpirationTab"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <!-- Contenido principal que cambiará según el botón seleccionado -->
+        <StackPane fx:id="contentPane">
+            <!-- Vista de Stock Actual (visible por defecto) -->
+            <VBox fx:id="stockView" spacing="10.0">
+                <TableView fx:id="stockTable" style="-fx-font-size: 14;">
+                    <columns>
+                        <TableColumn fx:id="operacionColumn" prefWidth="120.0" text="Operación">
+                            <cellValueFactory><PropertyValueFactory property="operacion"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="imagenColumn" prefWidth="60.0" text="Imagen">
+                            <cellValueFactory><PropertyValueFactory property="imagen"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="productoColumn" prefWidth="200.0" text="Producto">
+                            <cellValueFactory><PropertyValueFactory property="producto"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="stockActualColumn" prefWidth="80.0" text="Stock Actual">
+                            <cellValueFactory><PropertyValueFactory property="stockActual"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="pedidosColumn" prefWidth="80.0" text="Pedidos">
+                            <cellValueFactory><PropertyValueFactory property="pedidos"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="disponibleColumn" prefWidth="100.0" text="Disponible">
+                            <cellValueFactory><PropertyValueFactory property="disponible"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="proveedorColumn" prefWidth="120.0" text="Proveedor">
+                            <cellValueFactory><PropertyValueFactory property="proveedor"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="categoriaColumn" prefWidth="120.0" text="Categoría">
+                            <cellValueFactory><PropertyValueFactory property="categoria"/></cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </VBox>
+
+            <!-- Vista de Operaciones (oculta inicialmente) -->
+            <VBox fx:id="operationsView" spacing="10.0" visible="false">
+                <TableView fx:id="operacionesTable" style="-fx-font-size: 14;">
+                    <columns>
+                        <TableColumn fx:id="fechaOpColumn" prefWidth="120.0" text="Fecha">
+                            <cellValueFactory><PropertyValueFactory property="fecha"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="tipoOpColumn" prefWidth="120.0" text="Tipo">
+                            <cellValueFactory><PropertyValueFactory property="tipo"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="productoOpColumn" prefWidth="200.0" text="Producto">
+                            <cellValueFactory><PropertyValueFactory property="producto"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="cantidadOpColumn" prefWidth="80.0" text="Cantidad">
+                            <cellValueFactory><PropertyValueFactory property="cantidad"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="usuarioOpColumn" prefWidth="120.0" text="Usuario">
+                            <cellValueFactory><PropertyValueFactory property="usuario"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="notasOpColumn" prefWidth="200.0" text="Notas">
+                            <cellValueFactory><PropertyValueFactory property="notas"/></cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </VBox>
+
+            <!-- Vista de Vencimientos (oculta inicialmente) -->
+            <VBox fx:id="expirationView" spacing="10.0" visible="false">
+                <TableView fx:id="vencimientoTable" style="-fx-font-size: 14;">
+                    <columns>
+                        <TableColumn fx:id="productoVenColumn" prefWidth="200.0" text="Producto">
+                            <cellValueFactory><PropertyValueFactory property="producto"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="loteColumn" prefWidth="80.0" text="Lote">
+                            <cellValueFactory><PropertyValueFactory property="lote"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="fechaVenColumn" prefWidth="120.0" text="Fecha Vencimiento">
+                            <cellValueFactory><PropertyValueFactory property="fechaVencimiento"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="diasRestantesColumn" prefWidth="100.0" text="Días Restantes">
+                            <cellValueFactory><PropertyValueFactory property="diasRestantes"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="cantidadVenColumn" prefWidth="80.0" text="Cantidad">
+                            <cellValueFactory><PropertyValueFactory property="cantidad"/></cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="estadoColumn" prefWidth="100.0" text="Estado">
+                            <cellValueFactory><PropertyValueFactory property="estado"/></cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+            <Label fx:id="totalItemsLabel" text="Total: 0" style="-fx-font-weight: bold;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

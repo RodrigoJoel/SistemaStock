@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lobo24.controllers.ClientesController" stylesheets="@styles.css">
+
+
+    <!-- Top: Barra superior con título, búsqueda y botones -->
+    <top>
+        <HBox alignment="CENTER_LEFT">
+            <!-- Título y botón "+"-->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Clientes" style="-fx-text-fill: black; -fx-font-size: 20; -fx-font-weight: bold;"/>
+                <Button text="+"
+                        style="-fx-font-size: 18; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-background-color: #3498db; -fx-background-radius: 20;
+                               -fx-min-width: 40; -fx-min-height: 40; -fx-cursor: hand;"
+                        onAction="#abrirNuevoCliente"/>
+            </HBox>
+
+            <!-- Barra de búsqueda -->
+            <HBox spacing="10" style="-fx-padding: 0 20;">
+                <TextField fx:id="buscarField" promptText="Buscar cliente por nombre, código o teléfono"
+                           style="-fx-prompt-text-fill: #bdc3c7; -fx-font-size: 14; -fx-pref-width: 300;">
+                    <padding>
+                        <Insets top="5" right="5" bottom="5" left="5"/>
+                    </padding>
+                </TextField>
+            </HBox>
+
+            <!-- Botones adicionales -->
+            <HBox spacing="10" style="-fx-padding: 0 0 0 20;">
+                <Button text="Grupos" styleClass="menu-button"/>
+                <Button text="Historial" styleClass="menu-button"/>
+                <Button text="Exportar" styleClass="menu-button"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Center: Tabla de clientes -->
+    <center>
+        <VBox spacing="10">
+            <Label text="Cliente: Agrupar por categoría (ej: Premium, Básico)"
+                   style="-fx-text-fill: #7f8c8d; -fx-font-style: italic; -fx-padding: 5;"/>
+
+            <!-- Tabla de clientes -->
+            <TableView fx:id="tablaClientes">
+                <columns>
+                    <TableColumn fx:id="colAcciones" prefWidth="150" text="Acciones"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+                    <TableColumn fx:id="colCodigo" text="Código" prefWidth="100"/>
+                    <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="120"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                    <TableColumn fx:id="colSaldo" text="Saldo ($)" prefWidth="100"/>
+                    <TableColumn fx:id="colTipo" text="Plan" prefWidth="120"/>
+                    <TableColumn fx:id="colUltimaCompra" text="Última Compra" prefWidth="120"/>
+                    <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="250"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Contador de clientes -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+            <Label fx:id="contadorLabel" text="Total de clientes: 0" style="-fx-font-weight: bold;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

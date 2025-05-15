@@ -9,6 +9,7 @@
 
     <!-- Encabezado -->
     <Label text="Datos del Producto" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
     <HBox spacing="10">
         <Button text="Datos del producto" style="-fx-font-weight: bold; -fx-background-color: #e0e0e0;"/>
         <Button text="Combo"/>
@@ -18,48 +19,48 @@
         <Button text="Validad"/>
     </HBox>
 
-
+    <!-- Grid con campos de código -->
     <GridPane hgap="10" vgap="10">
-        <!-- Fila 1: Código -->
+        <!-- Código -->
         <Label text="Código:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <HBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
-            <TextField style="-fx-pref-width: 150;"/>
-            <CheckBox text="Automático"/>
+            <TextField fx:id="codigoField" style="-fx-pref-width: 150;"/>
+            <CheckBox fx:id="codigoAutoCheck" text="Automático"/>
         </HBox>
 
-        <!-- Fila 2: Código Extra -->
+        <!-- Código Extra -->
         <Label text="Código Extra:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="codigoExtraField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <!-- Fila 3: EAN/GTIN -->
+        <!-- EAN / GTIN -->
         <Label text="EAN / GTIN:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <TextField GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <TextField fx:id="eanField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
     </GridPane>
 
     <!-- Campos principales -->
     <VBox spacing="10">
-        <TextField promptText="Descripción/Nombre"/>
-        <ComboBox promptText="Categoría"/>
-        <TextField promptText="Marca"/>
+        <TextField fx:id="descripcionField" promptText="Descripción/Nombre"/>
+        <ComboBox fx:id="categoriaComboBox" promptText="Categoría"/>
+        <TextField fx:id="marcaField" promptText="Marca"/>
 
-        <!-- Precio de venta con checks -->
+        <!-- Precio de venta -->
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <TextField promptText="Precio de venta" style="-fx-pref-width: 150;"/>
-            <CheckBox text="Automático"/>
-            <CheckBox text="Cambiar precio en venta"/>
+            <TextField fx:id="precioField" promptText="Precio de venta" style="-fx-pref-width: 150;"/>
+            <CheckBox fx:id="precioAutoCheck" text="Automático"/>
+            <CheckBox fx:id="precioEditableCheck" text="Cambiar precio en venta"/>
         </HBox>
 
-        <TextField promptText="Precio de coste"/>
-        <TextField promptText="de incremento %"/>
-        <CheckBox text="Consulta de stock"/>
-        <TextField promptText="Stock actual"/>
-        <TextField promptText="Stock mínimo (alerta)"/>
+        <TextField fx:id="precioCosteField" promptText="Precio de coste"/>
+        <TextField fx:id="incrementoField" promptText="de incremento %"/>
+        <CheckBox fx:id="consultaStockCheck" text="Consulta de stock"/>
+        <TextField fx:id="stockField" promptText="Stock actual"/>
+        <TextField fx:id="stockMinimoField" promptText="Stock mínimo (alerta)"/>
     </VBox>
 
-    <!-- Sección Inferior -->
+    <!-- Opciones adicionales -->
     <VBox spacing="5" style="-fx-padding: 10 0 0 0;">
-        <CheckBox text="Cambiar precio en el momento de la venta"/>
-        <CheckBox text="Añadir observación - F4"/>
+        <CheckBox fx:id="precioEnVentaCheck" text="Cambiar precio en el momento de la venta"/>
+        <CheckBox fx:id="observacionCheck" text="Añadir observación - F4"/>
     </VBox>
 
     <!-- Botones -->

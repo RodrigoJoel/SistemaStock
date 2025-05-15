@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lobo24.controllers.CuentasAPagarController"
+            prefHeight="600.0" prefWidth="900.0">
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Cuentas a Pagar" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnOpciones" style="-fx-background-color: #e0e0e0; -fx-min-width: 10; -fx-min-height: 10; -fx-padding: 0;">
+                    <graphic>
+                        <Label text="⋯" style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnConfig" styleClass="icon-button">
+                    <graphic>
+                        <Label text="⚙" style="-fx-font-size: 18px;"/>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <!-- Resto del código permanece igual -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="btnNuevo" styleClass="primary-button" text="+" style="-fx-font-size: 16px;"/>
+                <TextField fx:id="txtBuscar" promptText="Buscar información de cualquier factura" prefWidth="400"/>
+                <MenuButton fx:id="btnFiltroEstado" style="-fx-font-size: 16px;">
+                    <graphic>
+                        <Label text="▼"/>
+                    </graphic>
+                    <items>
+                        <MenuItem text="Todos los estados"/>
+                        <MenuItem text="Pago"/>
+                        <MenuItem text="Pendiente"/>
+                        <MenuItem text="Vencido"/>
+                    </items>
+                </MenuButton>
+                <Button fx:id="btnFiltros" style="-fx-font-size: 16px;">
+                    <graphic>
+                        <Label text="⊽" style="-fx-font-size: 16px;"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaCuentas">
+            <columns>
+                <TableColumn fx:id="colOpciones" text="" prefWidth="100">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Operación"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colStatus" text="" prefWidth="100">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Status"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colVencimiento" text="" prefWidth="100">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Vencimiento"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colValor" text="" prefWidth="120">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Valor"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colReferente" text="" prefWidth="150">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Referente a"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colProveedor" text="" prefWidth="150">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Proveedor"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colTipo" text="" prefWidth="100">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Tipo"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colDias" text="" prefWidth="50">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Días"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+                <TableColumn fx:id="colMes" text="" prefWidth="100">
+                    <graphic>
+                        <HBox alignment="CENTER">
+                            <Label text="Mes"/>
+                        </HBox>
+                    </graphic>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
