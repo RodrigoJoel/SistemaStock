@@ -1,16 +1,25 @@
 package com.lobo24.controllers;
 
+import com.lobo24.database.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.scene.control.ComboBox;
+
+
+
 import com.lobo24.auth.AuthService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -18,17 +27,22 @@ import java.net.UnknownHostException;
 
 public class LoginController {
 
-    @FXML private TextField txtUsuario;
+    @FXML private ComboBox<String> cmbUsuario;
     @FXML private PasswordField txtPassword;
     @FXML private Label lblError;
     @FXML private Label lblIP;
+    @FXML private ComboBox<String> cmbServidor;
+
+
 
     @FXML
     public void initialize() {
         mostrarDireccionIP();
+        cmbUsuario.setEditable(false);
+        cargarUsuarios();
 
-        // ✅ Permitir login con Enter en los campos de usuario y contraseña
-        txtUsuario.setOnKeyPressed(this::handleEnterKey);
+        // Permitir login con Enter en usuario y contraseña
+        cmbUsuario.setOnKeyPressed(this::handleEnterKey);
         txtPassword.setOnKeyPressed(this::handleEnterKey);
     }
 
@@ -41,9 +55,28 @@ public class LoginController {
         }
     }
 
+    private void cargarUsuarios() {
+        String query = "SELECT username FROM usuarios ORDER BY username ASC";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nombre = rs.getString("username");
+                cmbUsuario.getItems().add(nombre);
+            }
+
+        } catch (SQLException e) {
+            lblError.setText("Error al cargar usuarios");
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private void handleLogin() {
-        String usuario = txtUsuario.getText().trim();
+        String usuario = cmbUsuario.getValue(); // antes: txtUsuario.getText().trim();
         String password = txtPassword.getText().trim();
 
         if (camposValidos(usuario, password)) {
@@ -89,7 +122,8 @@ public class LoginController {
             stage.setMinWidth(800);
             stage.setMinHeight(600);
 
-            ((Stage) txtUsuario.getScene().getWindow()).close();
+            // Cerrar ventana de login
+            ((Stage) cmbUsuario.getScene().getWindow()).close();
             stage.show();
         } catch (IOException e) {
             mostrarError("Error al cargar la interfaz principal");
@@ -112,8 +146,62 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();
+
+            // Cerrar ventana actual de login
+            Stage currentStage = (Stage) cmbUsuario.getScene().getWindow();
+            currentStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void mostrarOpcionesServidor() {
+        Stage ventana = new Stage();
+        ventana.initModality(Modality.APPLICATION_MODAL);
+        ventana.setTitle("¿Dónde se encuentra el servidor del programa?");
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new javafx.geometry.Insets(15));
+
+        ToggleGroup opciones = new ToggleGroup();
+
+        RadioButton opcion1 = new RadioButton("En esta misma computadora");
+        RadioButton opcion2 = new RadioButton("Localizar el servidor automáticamente");
+        RadioButton opcion3 = new RadioButton("Informe el nombre de red o IP del servidor");
+
+        opcion1.setToggleGroup(opciones);
+        opcion2.setToggleGroup(opciones);
+        opcion3.setToggleGroup(opciones);
+
+        TextField txtIP = new TextField();
+        txtIP.setPromptText("Ingrese IP o nombre del servidor");
+        txtIP.setDisable(true);
+
+        opcion3.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            txtIP.setDisable(!newVal);
+        });
+
+        Button btnAceptar = new Button("Aceptar");
+        btnAceptar.setOnAction(e -> {
+            if (opcion1.isSelected()) {
+                cmbServidor.setValue("Local");
+            } else if (opcion2.isSelected()) {
+                cmbServidor.setValue("Auto");
+            } else if (opcion3.isSelected()) {
+                cmbServidor.setValue(txtIP.getText());
+            }
+            ventana.close();
+        });
+
+        layout.getChildren().addAll(
+                new Label("¿Dónde se encuentra el servidor del programa?"),
+                opcion1, opcion2, opcion3, txtIP, btnAceptar
+        );
+
+        Scene scene = new Scene(layout);
+        ventana.setScene(scene);
+        ventana.showAndWait();
     }
 }

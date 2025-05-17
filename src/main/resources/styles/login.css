@@ -1,0 +1,74 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+.titulo-principal {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8b0000;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 3, 0, 0, 1);
+}
+
+.texto-ip {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5a6268;
+    -fx-font-style: italic;
+}
+
+.label-formulario {
+    -fx-font-size: 16px;
+    -fx-text-fill: #495057;
+}
+
+.campo-texto {
+    -fx-font-size: 15px;
+    -fx-pref-height: 35px;
+    -fx-pref-width: 250px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.icono-campo {
+    -fx-fill: #8b0000;
+    -fx-font-size: 14px;
+}
+
+.boton-principal {
+    -fx-background-color: #8b0000;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 45px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.boton-principal:hover {
+    -fx-background-color: #a52a2a;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.hyperlink {
+    -fx-font-size: 14px;
+    -fx-text-fill: #007bff;
+    -fx-border-color: transparent;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #0056b3;
+    -fx-underline: true;
+}
+
+.mensaje-error {
+    -fx-text-fill: #dc3545;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 0 0 0;
+}
+
+.campo-invalido {
+    -fx-border-color: #dc3545;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 5px;
+}

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Circle?>
 
 <SplitPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.lobo24.controllers.VentasController" orientation="HORIZONTAL">
@@ -11,14 +12,24 @@
     <!-- Contenido principal -->
     <VBox spacing="10" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
 
-        <!-- Título -->
-        <!-- Título y usuario -->
-        <VBox spacing="5">
-            <Label text="Ventas" style="-fx-font-size: 24; -fx-font-weight: bold;" />
-            <Label fx:id="lblUsuario" style="-fx-text-fill: #2c3e50;" />
-        </VBox>
+        <!-- Título y menú de usuario -->
+        <BorderPane>
+            <left>
+                <Label text="Ventas" style="-fx-font-size: 24; -fx-font-weight: bold;" />
+            </left>
+            <right>
+                <HBox spacing="10" alignment="CENTER">
+                    <!-- Menú de usuario (Nuevo) -->
+                    <StackPane fx:id="userMenuContainer" style="-fx-cursor: hand;">
+                        <Circle fx:id="userCircle" radius="20" fill="#3498db" />
+                        <Label fx:id="userInitial" text="G" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" />
+                    </StackPane>
+                </HBox>
+            </right>
+        </BorderPane>
 
-
+        <!-- Label de usuario -->
+        <Label fx:id="lblUsuario" style="-fx-text-fill: #2c3e50;" />
 
         <!-- Botones -->
         <HBox spacing="10">
@@ -66,5 +77,4 @@
         <Label text="© Lobo24 2025" style="-fx-text-fill: gray; -fx-padding: 10 0 0 0;" />
     </VBox>
 </SplitPane>
-
 

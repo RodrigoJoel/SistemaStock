@@ -5,46 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="849d05bd-d01e-45e8-a079-a8a0c73d4ac6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/CajaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ClientesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/CuentasAPagarController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/EditarClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/EditarFacturaDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/EstadisticasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevaFacturaDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevoClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/StockController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/dao/ClienteDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Factura.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/ProductoStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/AlertUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/ExcelReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Caja.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/CuentasAPagar.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/NuevaFactura.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Stock.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/clientes.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/estadisticas.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/nuevocliente.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/pruebas.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/config/ConfigService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ConfirmarCodigoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/ImageResources.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/LanguageManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/RecoveryCodeStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/SecurityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Jandro.jp.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/login" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/confirmarCodigo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevoProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/NuevoProductoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ProductosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/ProductosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/RecuperarPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/RecuperarPasswordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/VentasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/controllers/VentasController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/dao/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/dao/ProductoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/database/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/Producto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/models/VentaHistorico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/models/VentaHistorico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lobo24/util/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/ProductosView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/ProductosView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/nuevoProducto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/nuevoProducto.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/ventas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/ventas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,11 +82,11 @@
       <recent name="com.lobo24.controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\images" />
       <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\views" />
       <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\styles" />
       <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24\views\views" />
       <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24" />
-      <recent name="C:\Users\rodri\OneDrive\Desktop\JavaAlura24\stock-system\src\main\resources\com\lobo24\styles" />
     </key>
   </component>
   <component name="RunManager" selected="Application.StockSystemApp">

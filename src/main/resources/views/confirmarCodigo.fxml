@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.ConfirmarCodigoController"
+      spacing="20" alignment="CENTER"
+      style="-fx-padding: 30px; -fx-background-color: #f8f9fa; -fx-min-width: 400px;">
+
+    <Label text="Confirmar Código y Cambiar Contraseña"
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #8b0000;"/>
+
+    <TextField fx:id="txtCodigo" promptText="Código recibido"
+               style="-fx-pref-height: 35px; -fx-pref-width: 300px;"/>
+
+    <PasswordField fx:id="txtNuevaClave" promptText="Nueva contraseña"
+                   style="-fx-pref-height: 35px; -fx-pref-width: 300px;"/>
+
+    <PasswordField fx:id="txtConfirmarClave" promptText="Confirmar contraseña"
+                   style="-fx-pref-height: 35px; -fx-pref-width: 300px;"/>
+
+    <Button text="Cambiar Contraseña" onAction="#handleCambiarClave"
+            style="-fx-background-color: #8b0000; -fx-text-fill: white;
+                   -fx-font-size: 14px; -fx-font-weight: bold;
+                   -fx-pref-width: 200px; -fx-pref-height: 40px;"/>
+
+    <Label fx:id="lblMensaje" style="-fx-text-fill: #dc3545; -fx-font-size: 14px;"/>
+</VBox>
