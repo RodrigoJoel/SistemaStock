@@ -280,11 +280,28 @@ public class VentasController {
         }
 
     private void gestionarUsuarios() {
-        // Implementar lógica para gestionar usuarios
-        System.out.println("Gestionar usuarios");
-        userPopup.hide();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/GestionUsuarios.fxml"));
+            Parent root = loader.load();
 
-        // Aquí podrías abrir una ventana de gestión de usuarios
+            Stage stage = new Stage();
+            stage.setTitle("Gestión de Usuarios");
+            stage.setScene(new Scene(root, 800, 600));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(tablaVentas.getScene().getWindow());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo abrir la ventana de gestión de usuarios", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     // Clase interna

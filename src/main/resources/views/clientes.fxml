@@ -33,9 +33,9 @@
 
             <!-- Botones adicionales -->
             <HBox spacing="10" style="-fx-padding: 0 0 0 20;">
-                <Button text="Grupos" styleClass="menu-button"/>
-                <Button text="Historial" styleClass="menu-button"/>
-                <Button text="Exportar" styleClass="menu-button"/>
+                <Button text="Exportar a Excel" onAction="#exportarTablaExcel"/>
+                <Button text="Exportar a PDF" onAction="#exportarTablaPDF"/>
+
             </HBox>
         </HBox>
     </top>
@@ -56,7 +56,7 @@
                     <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
                     <TableColumn fx:id="colSaldo" text="Saldo ($)" prefWidth="100"/>
                     <TableColumn fx:id="colTipo" text="Plan" prefWidth="120"/>
-                    <TableColumn fx:id="colUltimaCompra" text="Última Compra" prefWidth="120"/>
+                    <TableColumn fx:id="colUltimaCompra" text="DNI/CUIT" prefWidth="120"/>
                     <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="250"/>
                 </columns>
             </TableView>

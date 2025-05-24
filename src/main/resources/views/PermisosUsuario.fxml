@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.PermisosUsuarioController"
+      spacing="15" style="-fx-padding: 20; -fx-background-color: #f8f9fa;" prefWidth="600">
+
+    <!-- Pestañas -->
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+        <!-- Pestaña 1: Datos personales -->
+        <Tab text="1. Datos personales">
+            <VBox spacing="10" style="-fx-padding: 15;">
+                <!-- Contenido de datos personales -->
+                <Label text="Información básica del usuario" style="-fx-font-weight: bold;"/>
+                <!-- Puedes agregar más campos aquí según necesites -->
+            </VBox>
+        </Tab>
+
+        <!-- Pestaña 2: Supervisor -->
+        <Tab text="2. Supervisor">
+            <VBox spacing="10" style="-fx-padding: 15;">
+                <!-- Contenido de supervisor -->
+                <Label text="Configuración de supervisor" style="-fx-font-weight: bold;"/>
+                <!-- Puedes agregar más campos aquí según necesites -->
+            </VBox>
+        </Tab>
+
+        <!-- Pestaña 3: Permisos -->
+        <Tab text="3. Permisos">
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="15" style="-fx-padding: 15;">
+                    <!-- Permisos generales -->
+                    <CheckBox fx:id="chkPermitirUso" text="Permitir el uso de la aplicación Nex"/>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <CheckBox fx:id="chkLimitarDescuentos" text="Limitar los descuentos"/>
+                        <Label text="Porcentaje máximo de descuento permitido por venta:"/>
+                        <TextField fx:id="txtMaxDescuento" prefWidth="60"/>
+                        <Label text="Porcentaje"/>
+                    </HBox>
+
+                    <CheckBox fx:id="chkEsAdmin" text="Este usuario es un Administrador y tiene acceso a todas las funciones de Nex"/>
+
+                    <!-- Separador -->
+                    <Separator/>
+
+                    <!-- Recursos accesibles -->
+                    <Label text="Marca los recursos a los que puede acceder el usuario:" style="-fx-font-weight: bold;"/>
+
+                    <GridPane hgap="20" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="200"/>
+                            <ColumnConstraints prefWidth="200"/>
+                            <ColumnConstraints prefWidth="200"/>
+                        </columnConstraints>
+
+                        <CheckBox text="1. Caja" fx:id="chkCaja" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <CheckBox text="2. Clientes" fx:id="chkClientes" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <CheckBox text="3. General" fx:id="chkGeneral" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+                        <CheckBox text="4. Estadísticas" fx:id="chkEstadisticas" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <CheckBox text="5. Proveedores" fx:id="chkProveedores" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <CheckBox text="7. Productos" fx:id="chkProductos" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+                        <CheckBox text="8. Stock" fx:id="chkStock" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <CheckBox text="9. Ventas" fx:id="chkVentas" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <CheckBox text="10. Cotización" fx:id="chkCotizacion" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+                        <CheckBox text="11. Cuentas a Pagar" fx:id="chkCuentasPagar" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    </GridPane>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+    </TabPane>
+
+    <!-- Botones -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="CANCELAR" onAction="#cancelar"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="GUARDAR" onAction="#guardarPermisos"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    </HBox>
+</VBox>

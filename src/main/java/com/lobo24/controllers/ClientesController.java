@@ -1,22 +1,37 @@
 package com.lobo24.controllers;
 
+import com.itextpdf.text.Font;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import com.lobo24.dao.ClienteDAO;
 import com.lobo24.models.Cliente;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class ClientesController {
 
-    // Componentes de la interfaz
     @FXML private TableColumn<ClienteTabla, Void> colAcciones;
     @FXML private TableView<ClienteTabla> tablaClientes;
     @FXML private TableColumn<ClienteTabla, String> colNombre;
@@ -30,19 +45,12 @@ public class ClientesController {
     @FXML private TextField buscarField;
     @FXML private Label contadorLabel;
 
-    // Clase interna para manejar los datos de la tabla
     public static class ClienteTabla {
-        private final String nombre;
-        private final String codigo;
-        private final String telefono;
-        private final String email;
+        private final String nombre, codigo, telefono, email, tipo, ultimaCompra, direccion;
         private final double saldo;
-        private final String tipo;
-        private final String ultimaCompra;
-        private final String direccion;
 
         public ClienteTabla(String nombre, String codigo, String telefono, String email,
-                            double saldo, String tipo, String ultimaCompra, String direccion) {
+                            double saldo, String tipo,String ultimaCompra, String direccion) {
             this.nombre = nombre;
             this.codigo = codigo;
             this.telefono = telefono;
@@ -53,7 +61,6 @@ public class ClientesController {
             this.direccion = direccion;
         }
 
-        // Getters
         public String getNombre() { return nombre; }
         public String getCodigo() { return codigo; }
         public String getTelefono() { return telefono; }
@@ -66,7 +73,13 @@ public class ClientesController {
 
     @FXML
     public void initialize() {
-        // Configurar las columnas de la tabla
+        configurarColumnas();
+        configurarAcciones();
+        cargarClientes();
+        buscarField.textProperty().addListener((obs, oldVal, newVal) -> filtrarClientes(newVal));
+    }
+
+    private void configurarColumnas() {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
@@ -76,31 +89,22 @@ public class ClientesController {
         colUltimaCompra.setCellValueFactory(new PropertyValueFactory<>("ultimaCompra"));
         colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
-        // Formatear columna de saldo para mostrar moneda
         colSaldo.setCellFactory(tc -> new TableCell<>() {
             @Override
             protected void updateItem(Double saldo, boolean empty) {
                 super.updateItem(saldo, empty);
                 if (empty || saldo == null) {
                     setText(null);
+                    setStyle("");
                 } else {
                     setText(String.format("$ %.2f", saldo));
-                    // Color rojo para saldos negativos
-                    if (saldo < 0) {
-                        setStyle("-fx-text-fill: red;");
-                    } else {
-                        setStyle("-fx-text-fill: green;");
-                    }
+                    setStyle("-fx-text-fill: " + (saldo < 0 ? "red" : "green") + ";");
                 }
             }
         });
+    }
 
-        // Cargar datos iniciales
-        cargarClientes();
-
-        // Configurar búsqueda en tiempo real
-        buscarField.textProperty().addListener((obs, oldVal, newVal) -> filtrarClientes(newVal));
-
+    private void configurarAcciones() {
         colAcciones.setCellFactory(col -> new TableCell<>() {
             private final Button btnEditar = new Button("Editar");
             private final Button btnEliminar = new Button("Eliminar");
@@ -123,63 +127,25 @@ public class ClientesController {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    HBox hbox = new HBox(10, btnEditar, btnEliminar);
-                    setGraphic(hbox);
-                }
+                setGraphic(empty ? null : new HBox(10, btnEditar, btnEliminar));
             }
         });
-
     }
-
-    private void abrirEdicionCliente(ClienteTabla clienteSeleccionado) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/nuevocliente.fxml"));
-            Parent root = loader.load();
-
-            EditarClienteController controller = loader.getController();
-            controller.setCliente(clienteSeleccionado);
-            controller.setClientesController(this);
-
-            Stage stage = new Stage();
-            stage.setTitle("Editar Cliente");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            mostrarError("Error", "No se pudo cargar la ventana de edición");
-            e.printStackTrace();
-        }
-    }
-
-    private void eliminarClienteDesdeTabla(ClienteTabla clienteSeleccionado) {
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle("Confirmar eliminación");
-        confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿Está seguro de eliminar al cliente " + clienteSeleccionado.getNombre() + "?");
-
-        if (confirmacion.showAndWait().get() == ButtonType.OK) {
-            boolean eliminado = ClienteDAO.eliminarClientePorCodigo(clienteSeleccionado.getCodigo());
-
-            if (eliminado) {
-                tablaClientes.getItems().remove(clienteSeleccionado);
-                actualizarContador();
-                mostrarInfo("Éxito", "Cliente eliminado correctamente");
-            } else {
-                mostrarError("Error", "No se pudo eliminar el cliente");
-            }
-        }
-    }
-
 
     void cargarClientes() {
-        tablaClientes.getItems().clear();
-        List<Cliente> clientes = ClienteDAO.obtenerTodosClientes();
+        cargarClientesDesdeLista(ClienteDAO.obtenerTodosClientes());
+    }
 
+    private void filtrarClientes(String filtro) {
+        if (filtro == null || filtro.isEmpty()) {
+            cargarClientes();
+        } else {
+            cargarClientesDesdeLista(ClienteDAO.buscarClientes(filtro));
+        }
+    }
+
+    private void cargarClientesDesdeLista(List<Cliente> clientes) {
+        tablaClientes.getItems().clear();
         for (Cliente cliente : clientes) {
             tablaClientes.getItems().add(new ClienteTabla(
                     cliente.getNombreCompleto(),
@@ -188,36 +154,11 @@ public class ClientesController {
                     cliente.getEmail(),
                     cliente.getSaldo(),
                     cliente.getTipoCliente(),
-                    cliente.getUltimaCompra(),
+                    cliente.getDni(),
                     cliente.getDireccionCompleta()
             ));
         }
-
         actualizarContador();
-    }
-
-    private void filtrarClientes(String filtro) {
-        if (filtro == null || filtro.isEmpty()) {
-            cargarClientes();
-        } else {
-            tablaClientes.getItems().clear();
-            List<Cliente> clientes = ClienteDAO.buscarClientes(filtro);
-
-            for (Cliente cliente : clientes) {
-                tablaClientes.getItems().add(new ClienteTabla(
-                        cliente.getNombreCompleto(),
-                        cliente.getCodigo(),
-                        cliente.getTelefono(),
-                        cliente.getEmail(),
-                        cliente.getSaldo(),
-                        cliente.getTipoCliente(),
-                        cliente.getUltimaCompra(),
-                        cliente.getDireccionCompleta()
-                ));
-            }
-
-            actualizarContador();
-        }
     }
 
     private void actualizarContador() {
@@ -226,24 +167,41 @@ public class ClientesController {
 
     @FXML
     private void abrirNuevoCliente() {
+        abrirFormularioCliente("/views/nuevocliente.fxml", "Nuevo Cliente", null);
+    }
+
+    private void abrirEdicionCliente(ClienteTabla clienteSeleccionado) {
+        abrirFormularioCliente("/views/nuevocliente.fxml", "Editar Cliente", clienteSeleccionado);
+    }
+
+    private void abrirFormularioCliente(String ruta, String titulo, ClienteTabla cliente) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/nuevocliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(ruta));
             Parent root = loader.load();
 
-
             NuevoClienteController controller = loader.getController();
-            //  controller.setClientesController(this);
+            controller.setClientesController(this);
+
+            if (cliente != null) {
+                controller.setCliente(cliente);
+            }
 
             Stage stage = new Stage();
-            stage.setTitle("Nuevo Cliente");
+            stage.setTitle(titulo);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
         } catch (IOException e) {
-            mostrarError("Error", "No se pudo cargar la ventana de nuevo cliente");
+            mostrarError("Error", "No se pudo cargar la ventana de cliente");
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void cerrarVentana(javafx.event.ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     public void agregarCliente(ClienteTabla nuevoCliente) {
@@ -254,26 +212,8 @@ public class ClientesController {
     @FXML
     private void editarCliente() {
         ClienteTabla clienteSeleccionado = tablaClientes.getSelectionModel().getSelectedItem();
-
         if (clienteSeleccionado != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/nuevocliente.fxml"));
-                Parent root = loader.load();
-
-                EditarClienteController controller = loader.getController();
-                controller.setCliente(clienteSeleccionado);
-                controller.setClientesController(this);
-
-                Stage stage = new Stage();
-                stage.setTitle("Editar Cliente");
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-
-            } catch (IOException e) {
-                mostrarError("Error", "No se pudo cargar la ventana de edición");
-                e.printStackTrace();
-            }
+            abrirEdicionCliente(clienteSeleccionado);
         } else {
             mostrarError("Selección requerida", "Por favor seleccione un cliente para editar");
         }
@@ -282,26 +222,49 @@ public class ClientesController {
     @FXML
     private void eliminarCliente() {
         ClienteTabla clienteSeleccionado = tablaClientes.getSelectionModel().getSelectedItem();
-
         if (clienteSeleccionado != null) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setTitle("Confirmar eliminación");
-            confirmacion.setHeaderText(null);
-            confirmacion.setContentText("¿Está seguro de eliminar al cliente " + clienteSeleccionado.getNombre() + "?");
-
-            if (confirmacion.showAndWait().get() == ButtonType.OK) {
-                boolean eliminado = ClienteDAO.eliminarClientePorCodigo(clienteSeleccionado.getCodigo());
-
-                if (eliminado) {
-                    tablaClientes.getItems().remove(clienteSeleccionado);
-                    actualizarContador();
-                    mostrarInfo("Éxito", "Cliente eliminado correctamente");
-                } else {
-                    mostrarError("Error", "No se pudo eliminar el cliente");
-                }
-            }
+            eliminarClienteDesdeTabla(clienteSeleccionado);
         } else {
             mostrarError("Selección requerida", "Por favor seleccione un cliente para eliminar");
+        }
+    }
+
+    private void eliminarClienteDesdeTabla(ClienteTabla clienteSeleccionado) {
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar eliminación");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Está seguro de eliminar al cliente " + clienteSeleccionado.getNombre() + "?");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            boolean eliminado = ClienteDAO.eliminarClientePorCodigo(clienteSeleccionado.getCodigo());
+            if (eliminado) {
+                tablaClientes.getItems().remove(clienteSeleccionado);
+                actualizarContador();
+                mostrarInfo("Éxito", "Cliente eliminado correctamente");
+            } else {
+                mostrarError("Error", "No se pudo eliminar el cliente");
+            }
+        }
+    }
+
+    public void actualizarClienteEnTabla(Cliente clienteActualizado) {
+        for (int i = 0; i < tablaClientes.getItems().size(); i++) {
+            ClienteTabla c = tablaClientes.getItems().get(i);
+            if (c.getCodigo().equals(clienteActualizado.getCodigo())) {
+                ClienteTabla actualizado = new ClienteTabla(
+                        clienteActualizado.getNombreCompleto(),
+                        clienteActualizado.getCodigo(),
+                        clienteActualizado.getTelefono(),
+                        clienteActualizado.getEmail(),
+                        clienteActualizado.getSaldo(),
+                        clienteActualizado.getTipoCliente(),
+                        clienteActualizado.getDni(),
+                        clienteActualizado.getDireccionCompleta()
+                );
+                tablaClientes.getItems().set(i, actualizado);
+                break;
+            }
         }
     }
 
@@ -320,4 +283,124 @@ public class ClientesController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    // ------------------- Exportar a Excel -------------------
+
+    @FXML
+    private void exportarTablaExcel() {
+        if (tablaClientes.getItems().isEmpty()) {
+            mostrarError("Error", "No hay datos para exportar");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar archivo Excel");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivo Excel (*.xlsx)", "*.xlsx"));
+        File file = fileChooser.showSaveDialog(tablaClientes.getScene().getWindow());
+
+        if (file != null) {
+            try (Workbook workbook = new XSSFWorkbook()) {
+                Sheet sheet = workbook.createSheet("Clientes");
+
+                // Crear fila de encabezado
+                Row header = sheet.createRow(0);
+                String[] columnas = {"Nombre", "Código", "Teléfono", "Email", "Saldo", "Tipo", "DNI/CUIT", "Dirección"};
+                for (int i = 0; i < columnas.length; i++) {
+                    Cell cell = header.createCell(i);
+                    cell.setCellValue(columnas[i]);
+                }
+
+                // Rellenar filas con datos
+                int rowIndex = 1;
+                for (ClienteTabla c : tablaClientes.getItems()) {
+                    Row row = sheet.createRow(rowIndex++);
+                    row.createCell(0).setCellValue(c.getNombre());
+                    row.createCell(1).setCellValue(c.getCodigo());
+                    row.createCell(2).setCellValue(c.getTelefono());
+                    row.createCell(3).setCellValue(c.getEmail());
+                    row.createCell(4).setCellValue(c.getSaldo());
+                    row.createCell(5).setCellValue(c.getTipo());
+                    row.createCell(6).setCellValue(c.getUltimaCompra());
+                    row.createCell(7).setCellValue(c.getDireccion());
+                }
+
+                // Autoajustar columnas
+                for (int i = 0; i < columnas.length; i++) {
+                    sheet.autoSizeColumn(i);
+                }
+
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    workbook.write(fos);
+                }
+
+                mostrarInfo("Exportación exitosa", "Archivo Excel guardado correctamente.");
+
+            } catch (IOException e) {
+                mostrarError("Error", "No se pudo guardar el archivo Excel.");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // ------------------- Exportar a PDF -------------------
+
+    @FXML
+    private void exportarTablaPDF() {
+        if (tablaClientes.getItems().isEmpty()) {
+            mostrarError("Error", "No hay datos para exportar");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar archivo PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivo PDF (*.pdf)", "*.pdf"));
+        File file = fileChooser.showSaveDialog(tablaClientes.getScene().getWindow());
+
+        if (file != null) {
+            Document document = new Document(PageSize.A4.rotate());
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(file));
+                document.open();
+
+                Font fontTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+                Paragraph titulo = new Paragraph("Listado de Clientes", fontTitulo);
+                titulo.setAlignment(Element.ALIGN_CENTER);
+                titulo.setSpacingAfter(20);
+                document.add(titulo);
+
+                PdfPTable table = new PdfPTable(8);
+                table.setWidthPercentage(100);
+                table.setWidths(new int[]{3, 2, 3, 4, 2, 2, 3, 4});
+
+                // Agregar encabezados
+                String[] columnas = {"Nombre", "Código", "Teléfono", "Email", "Saldo", "Tipo", "DNI/CUIT", "Dirección"};
+                for (String col : columnas) {
+                    table.addCell(new Phrase(col, FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+                }
+
+                // Agregar filas de datos
+                for (ClienteTabla c : tablaClientes.getItems()) {
+                    table.addCell(c.getNombre());
+                    table.addCell(c.getCodigo());
+                    table.addCell(c.getTelefono());
+                    table.addCell(c.getEmail());
+                    table.addCell(String.format("$ %.2f", c.getSaldo()));
+                    table.addCell(c.getTipo());
+                    table.addCell(c.getUltimaCompra());
+                    table.addCell(c.getDireccion());
+                }
+
+                document.add(table);
+                mostrarInfo("Exportación exitosa", "Archivo PDF guardado correctamente.");
+
+            } catch (Exception e) {
+                mostrarError("Error", "No se pudo guardar el archivo PDF.");
+                e.printStackTrace();
+            } finally {
+                document.close();
+            }
+        }
+    }
 }
+
+

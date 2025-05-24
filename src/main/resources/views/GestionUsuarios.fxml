@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lobo24.controllers.GestionUsuariosController"
+      spacing="15" style="-fx-padding: 20; -fx-background-color: #f8f9fa;">
+
+    <!-- Título -->
+    <Label text="Usuarios" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <!-- Barra de búsqueda y filtros -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="txtBuscar" promptText="Buscar usuario..."
+                   style="-fx-pref-width: 250px; -fx-pref-height: 35px;"/>
+        <Button text="Filtrar" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+    </HBox>
+
+    <!-- Lista de usuarios -->
+    <TableView fx:id="tablaUsuarios" style="-fx-font-size: 14px;">
+        <columns>
+            <TableColumn fx:id="colInicial" text="" style="-fx-alignment: CENTER;" prefWidth="40"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="250"/>
+            <TableColumn fx:id="colRol" text="Rol" prefWidth="100"/>
+            <TableColumn fx:id="colAcciones" text="Acciones" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <!-- Botones de acción -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Nuevo Usuario" onAction="#nuevoUsuario"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Editar" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+        <Button text="Eliminar" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

@@ -48,7 +48,7 @@
         <!-- Fila 5 -->
 
         <Label text="Tipo Cliente:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="tipoClientComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1">
+        <ComboBox fx:id="tipoClienteComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Regular"/>  <!-- Usar fx:value en lugar de value -->
@@ -59,10 +59,10 @@
             </items>
         </ComboBox>
 
-        <Label text="Ultiima compra:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
-        <TextField fx:id="ultimaField" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+        <!--  <Label text="Ultiima compra:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+          <DatePicker fx:id="ultimaPicker" GridPane.rowIndex="11" GridPane.columnIndex="1"/>-->
 
-        <!-- Fila 6 -->
+          <!-- Fila 6 -->
         <Label text="Dirección:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
         <TextField fx:id="direccionField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
@@ -78,10 +78,10 @@
         <TextField fx:id="saldoField" GridPane.rowIndex="8" GridPane.columnIndex="1" promptText="0.00"/>
 
         <!-- Fila 9 -->
-        <Label text="Fecha Nacimiento:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-        <DatePicker fx:id="fechaNacimientoPicker" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+        <!--  <Label text="Fecha Nacimiento:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+          <DatePicker fx:id="fechaNacimientoPicker" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
 
-        <!-- Fila 10 -->
+          <!- Fila 10 -->
         <Label text="Notificaciones:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
         <CheckBox fx:id="notificacionesCheck" text="Recibe notificaciones" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
     </GridPane>
@@ -90,7 +90,7 @@
     <TextArea fx:id="observacionesArea" prefRowCount="3"/>
 
     <HBox spacing="10" style="-fx-padding: 10 0 0 0;" alignment="CENTER_RIGHT">
-        <Button text="Cancelar" onAction="#cerrarVentana" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        <Button text="Cancelar" onAction="#cancelar" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
         <Button text="Guardar" onAction="#guardarCliente" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
     </HBox>
 </VBox>
